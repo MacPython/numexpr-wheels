@@ -23,7 +23,7 @@ script:
   # install dependencies for tests e.g - pip install nose
   - mkdir tmp_for_test
   - cd tmp_for_test
-  # Run the tests
+  - python -c 'import sys, numexpr; sys.exit(not numexpr.test())'
   - cd ..
 before_deploy: cd numexpr/dist
 deploy:
