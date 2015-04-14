@@ -13,7 +13,7 @@ install:
   - get_python_environment macpython $VERSION venv
   - pip install delocate numpy==$NUMPY_VERSION
   - if [ -n "$PROJECT_COMMIT" ]; then
-        checkout_commit $PROJECT_DIR $PROJECT_COMMIT
+        checkout_commit $PROJECT_DIR $PROJECT_COMMIT;
     fi
   - cd $PROJECT_DIR
   - python setup.py bdist_wheel
