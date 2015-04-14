@@ -2,17 +2,20 @@ language:
 - objective-c
 env:
   global:
-  - LATEST_TAG=1 # comment out to build version in submodule
+  - PROJECT_COMMIT=latest-tag # comment out to build version in submodule
+  - PROJECT_DIR=numexpr
   matrix:
-  - VERSION=2.7.8 NUMPY_VERSION=1.6.1 # tune to taste
+  - VERSION=2.7.9 NUMPY_VERSION=1.6.1 # tune to taste
   - VERSION=3.3.5 NUMPY_VERSION=1.7.1
-  - VERSION=3.4.1 NUMPY_VERSION=1.7.1
+  - VERSION=3.4.2 NUMPY_VERSION=1.7.1
 install:
   - source terryfy/travis_tools.sh
   - get_python_environment macpython $VERSION venv
   - pip install delocate numpy==$NUMPY_VERSION
-  - if [ -n "$LATEST_TAG" ]; then checkout_closest_tag numexpr; fi
-  - cd numexpr
+  - if [ -n "$PROJECT_COMMIT" ]; then
+        checkout_commit $PROJECT_DIR $PROJECT_COMMIT
+    fi
+  - cd $PROJECT_DIR
   - python setup.py bdist_wheel
   - delocate-listdeps dist/*.whl # lists library dependencies
   - delocate-wheel dist/*.whl # copies library dependencies into wheel
@@ -25,7 +28,7 @@ script:
   - cd tmp_for_test
   - python -c 'import sys, numexpr; sys.exit(not numexpr.test())'
   - cd ..
-before_deploy: cd numexpr/dist
+before_deploy: cd $PROJECT_DIR/dist
 deploy:
   provider: cloudfiles
   username: travis-worker
