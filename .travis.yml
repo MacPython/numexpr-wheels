@@ -34,7 +34,10 @@ script:
   - cd tmp_for_test
   - python -c 'import sys, numexpr; sys.exit(not numexpr.test())'
   - cd ..
-before_deploy: cd $PROJECT_DIR/dist
+before_deploy:
+  - cd $REPO_DIR/dist
+  # Fix for https://github.com/travis-ci/travis-ci/issues/4635
+  - rvm 1.9.3 do gem install net-ssh -v 2.9.2
 deploy:
   provider: cloudfiles
   username: travis-worker
