@@ -3,7 +3,7 @@ language:
 env:
   global:
   - PROJECT_COMMIT=latest-tag # comment out to build version in submodule
-  - PROJECT_DIR=numexpr
+  - REPO_DIR=numexpr
   - NIPY_WHEEL_URL=https://nipy.bic.berkeley.edu/scipy_installers
   matrix:
   - VERSION=2.7.10 NUMPY_VERSION=1.6.1 # tune to taste
@@ -19,9 +19,9 @@ install:
   # Install patched wheel for Python 3.5
   - pip install --no-index -f $NIPY_WHEEL_URL numpy==$NUMPY_VERSION
   - if [ -n "$PROJECT_COMMIT" ]; then
-        checkout_commit $PROJECT_DIR $PROJECT_COMMIT;
+        checkout_commit $REPO_DIR $PROJECT_COMMIT;
     fi
-  - cd $PROJECT_DIR
+  - cd $REPO_DIR
   - python setup.py bdist_wheel
   - delocate-listdeps dist/*.whl # lists library dependencies
   - delocate-wheel dist/*.whl # copies library dependencies into wheel
