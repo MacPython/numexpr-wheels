@@ -21,6 +21,8 @@ install:
   - if [ -n "$PROJECT_COMMIT" ]; then
         checkout_commit $REPO_DIR $PROJECT_COMMIT;
     fi
+  - export CC=clang
+  - export CXX=clang++
   - cd $REPO_DIR
   - python setup.py bdist_wheel
   - delocate-listdeps dist/*.whl # lists library dependencies
