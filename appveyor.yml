@@ -76,6 +76,7 @@ test_script:
   # Run some tests
   - pip install nose
   - mkdir tmp_for_tests
+  - cd tmp_for_tests
   - nosetests numexpr
   - cd ..
 
