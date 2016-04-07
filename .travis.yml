@@ -2,7 +2,7 @@ language:
 - objective-c
 env:
   global:
-  - PROJECT_COMMIT=latest-tag # comment out to build version in submodule
+  # - PROJECT_COMMIT=latest-tag # comment out to build version in submodule
   - REPO_DIR=numexpr
   - NIPY_WHEEL_URL=https://nipy.bic.berkeley.edu/scipy_installers
   matrix:
