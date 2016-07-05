@@ -87,18 +87,22 @@ called a `wheelhouse`.   The typical call for `wheel-uploader` would then
 be something like::
 
     CDN_URL=https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com
-    wheel-uploader -r warehouse -u $CDN_URL -v -w ~/wheelhouse -t macosx numexpr 2.6.0
-    wheel-uploader -r warehouse -u $CDN_URL -v -w ~/wheelhouse -t manylinux1 numexpr 2.6.0
+    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t macosx numexpr 2.6.0
+    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t manylinux1 numexpr 2.6.0
 
 where:
 
-* ``-v`` means give verbose messages;
-* ``-w ~/wheelhouse`` means download the wheels from https://wheels.scipy.org
-  to the directory ``~/wheelhouse``;
 * ``-r warehouse`` uses the upcoming Warehouse PyPI server (it is more
   reliable than the current PyPI service for uploads);
-* ``numexpr`` is the root name of the wheel(s) to download / upload;
-* ``2.6.0`` is the version to download / upload.
+* ``-u`` gives the URL from which to fetch the wheels, here the https address,
+  for some extra security;
+* ``-s`` causes twine to sign the wheels with your GPG key;
+* ``-v`` means give verbose messages;
+* ``-w ~/wheelhouse`` means download the wheels from to the local directory
+  ``~/wheelhouse``.
+
+``numexpr`` is the root name of the wheel(s) to download / upload, and
+``2.6.0`` is the version to download / upload.
 
 In order to use the Warehouse PyPI server, you will need something like this
 in your ``~/.pypirc`` file::
