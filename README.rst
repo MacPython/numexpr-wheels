@@ -86,9 +86,10 @@ You will typically have a directory on your machine where you store wheels,
 called a `wheelhouse`.   The typical call for `wheel-uploader` would then
 be something like::
 
+    VERSION=2.6.1
     CDN_URL=https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com
-    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t macosx numexpr 2.6.0
-    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t manylinux1 numexpr 2.6.0
+    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t macosx numexpr $VERSION
+    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t manylinux1 numexpr $VERSION
 
 where:
 
