@@ -10,6 +10,9 @@ os: Visual Studio 2015
 
 environment:
     global:
+      BUILD_COMMIT: v2.6.2
+      NP_BUILD_DEP: "numpy==1.7.1"
+      NP_TEST_DEP: "numpy==1.7.1"
       WHEELHOUSE_UPLOADER_USERNAME: travis-worker
       WHEELHOUSE_UPLOADER_SECRET:
         secure:
@@ -36,10 +39,26 @@ environment:
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5.x" # currently 3.5.1
       PYTHON_ARCH: "32"
+      NP_BUILD_DEP: "numpy==1.9.3"
+      NP_TEST_DEP: "numpy==1.9.3"
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5.x" # currently 3.5.1
       PYTHON_ARCH: "64"
+      NP_BUILD_DEP: "numpy==1.9.3"
+      NP_TEST_DEP: "numpy==1.9.3"
+
+    - PYTHON: "C:\\Python36"
+      PYTHON_VERSION: "3.6.x" # currently 3.6.0
+      PYTHON_ARCH: "32"
+      NP_BUILD_DEP: "numpy==1.11.3"
+      NP_TEST_DEP: "numpy==1.11.3"
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.6.x" # currently 3.6.0
+      PYTHON_ARCH: "64"
+      NP_BUILD_DEP: "numpy==1.11.3"
+      NP_TEST_DEP: "numpy==1.11.3"
 
 install:
   - cmd: echo "Using cmd"
@@ -65,8 +84,9 @@ install:
 
 build_script:
   # Build and install the wheel
-  - pip install numpy
+  - pip install numpy==%NP_BUILD_DEP%
   - cd numexpr
+  - git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel
   - cd dist
   - pip install --pre --no-index -f . numexpr
@@ -75,6 +95,7 @@ build_script:
 test_script:
   # Run some tests
   - pip install nose
+  - pip install numpy==%NP_TEST_DEP%
   - mkdir tmp_for_tests
   - cd tmp_for_tests
   - nosetests numexpr
