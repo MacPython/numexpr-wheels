@@ -75,7 +75,7 @@ content delivery network.  It can take up to 15 minutes for the new wheel file
 to get updated into the container at http://wheels.scipy.org.
 
 The same contents appear at
-https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com;
+http://a365fff413fe338398b6-1c8a9b3114517dc5fe17b7c3f8c63a43.r19.cf2.rackcdn.com/;
 you might prefer this address because it is https.
 
 When the wheels are updated, you can download them to your machine manually,
@@ -88,13 +88,13 @@ For the ``wheel-uploader`` script, you'll need twine and `beautiful soup 4
 
 You will typically have a directory on your machine where you store wheels,
 called a `wheelhouse`.   The typical call for `wheel-uploader` would then
-be something like::
+be something like (from Windows `cmd`)::
 
-    VERSION=2.6.2
-    CDN_URL=https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com
-    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t macosx numexpr $VERSION
-    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t manylinux1 numexpr $VERSION
-    wheel-uploader -r warehouse -u $CDN_URL -s -v -w ~/wheelhouse -t win numexpr $VERSION
+  set VERSION=2.6.5
+  set CDN_URL=http://a365fff413fe338398b6-1c8a9b3114517dc5fe17b7c3f8c63a43.r19.cf2.rackcdn.com/
+  python wheel-uploader.py -r pypi -u %CDN_URL% -v -w ./wheelhouse -t macosx numexpr %VERSION%
+  python wheel-uploader.py -r pypi -u %CDN_URL% -v -w ./wheelhouse -t manylinux1 numexpr %VERSION%
+  python wheel-uploader.py -r pypi -u %CDN_URL% -v -w ./wheelhouse -t win numexpr %VERSION%
 
 where:
 
@@ -108,7 +108,7 @@ where:
   ``~/wheelhouse``.
 
 ``numexpr`` is the root name of the wheel(s) to download / upload, and
-``2.6.2`` is the version to download / upload.
+``2.6.5`` is the version to download / upload.
 
 In order to use the Warehouse PyPI server, you will need something like this
 in your ``~/.pypirc`` file::
