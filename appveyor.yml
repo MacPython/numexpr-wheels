@@ -10,7 +10,7 @@
 
 environment:
     global:
-      BUILD_COMMIT: v2.6.9
+      BUILD_COMMIT: v2.7.0
       NP_BUILD_DEP: "1.14.5"
       NP_TEST_DEP: "1.14.5"
       WHEELHOUSE_UPLOADER_USERNAME: travis-worker
@@ -56,7 +56,6 @@ environment:
       NP_BUILD_DEP: "1.14.5"
       NP_TEST_DEP: "1.14.5"
 
-      # Currently no 32-bit Python 3.7.1 available
     - PYTHON: "C:\\Python37"
       PYTHON_VERSION: "3.7.1"
       PYTHON_ARCH: "32"
