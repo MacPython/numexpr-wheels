@@ -1,3 +1,12 @@
+##################
+DEPRECATION NOTICE
+##################
+
+This repository is no longer in use due to the Rackspace CDN servers no longer 
+being available. Wheel building for NumExpr is now (Dec-2020) being performed 
+via GitHub Actions on the master branch at `www.github.com/pydata/numexpr`.
+
+
 #####################################
 Building and uploading numexpr wheels
 #####################################
